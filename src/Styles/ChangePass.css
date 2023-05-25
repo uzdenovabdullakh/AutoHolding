@@ -1,0 +1,69 @@
+
+.submit_btn{
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    margin-bottom: 20px;
+    padding: 10px 51px;
+    background: #4A82EA;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+    text-align: center;
+    cursor: pointer;
+}
+
+.modal-pass{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    background-color: black;
+    opacity: 0.9;
+
+}
+
+.modal-body-pass {
+    padding: 2rem;
+    width: 400px;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 1);
+    height: 290px;
+    z-index: 3;
+}
+
+.modal-body-pass h1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top:0;
+}
+
+.inputs_change_pass{
+    background: #d9d5d5;
+}
+
+.change_block{
+    padding: 0rem 3rem;
+}
+
+.change_btn{
+    margin-left: 45px;
+}
+
+.close_modal{
+    cursor: pointer;
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-end;
+}

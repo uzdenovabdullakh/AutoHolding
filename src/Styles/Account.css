@@ -1,0 +1,84 @@
+.back__to__main{
+    padding-top: 40px;
+    margin-left: 100px;
+    display: block;
+}
+
+.about__user {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+.name {
+    padding: 5px;
+}
+
+.email {
+    padding: 5px;
+}
+
+.my__address {
+    padding: 5px;
+}
+.my__address span {
+    color: #000d;
+    margin-left: 5px;
+}
+
+.my__balance {
+    padding: 5px;
+}
+
+.my__balance span {
+    margin-left: 30px;
+    color: #000d;
+}
+
+
+
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 345px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 140%;
+    left: 0%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.copy__btn{
+    background: #00C322;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+}

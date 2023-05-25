@@ -1,0 +1,104 @@
+
+  
+  .avatar__main {
+    width: 100%;
+    position: fixed;
+    top: 50px;
+    left: 100px;
+  }
+  
+  .avatar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  
+  
+  .avatar__main .avatar-container li {
+    list-style: none;
+  }
+  
+  .avatar__main .avatar-container a {
+    padding: 0.7rem;
+  }
+  
+  
+  
+  .avatar-container {
+    display: block;
+    position: relative;
+  }
+  
+  .avatar-container .checkbox {
+    position: absolute;
+    display: block;
+    height: 79px;
+    width: 78px;
+    top: -28px;
+    right: 157px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  
+  .avatar-container input[type="checkbox"]:checked ~ .avatar__menu_items {
+    transform: translateX(0);
+  }
+  
+
+.avatar__main .avatar__menu_items {
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+  transform: translate(200%);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease-in-out;
+  text-align: center;
+}
+  
+.avatar__main .avatar__menu_items li {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  color: #000000;
+  cursor: pointer;
+}
+  
+.avatar__main .avatar__menu_items {
+  display: flex;
+  align-items: flex-end;
+  position: fixed;
+  right:45px;
+  margin-top: 70px
+}
+
+.avatar__menu_items li {
+    background: #ffffff;
+    border-radius: 13px;
+    padding: 1rem 1.5rem;
+    line-height: 0;
+    margin: 20px;
+}
+
+.avatar__menu_items li a{
+    text-decoration: none;
+    color: #000000;
+}
+
+ 
+
+.avatar {
+    background: url('../assets/profile-pic\ 1.png');
+    display: block;
+    height: 103px;
+    width: 100px;
+    position: absolute;
+    top: -40px;
+    right: 150px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

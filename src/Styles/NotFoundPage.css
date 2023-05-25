@@ -1,0 +1,27 @@
+.page_box {
+    height: 100vh;
+    background:#58A9A5;
+    color:#fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+}
+.box h2 {
+    font-weight: 700;
+    font-size: 25vh;
+    margin: 0;
+    line-height: 1;
+}
+.box h2 + p {
+    font-size: 3vh;
+}
+.back{
+    margin-top:30px;
+}
+.back a {
+    text-decoration: none;
+    color:#1458bf;
+}
+ 

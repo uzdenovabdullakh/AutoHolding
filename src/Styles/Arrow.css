@@ -1,0 +1,50 @@
+.arrow-wrapper {
+    display: flex;
+    align-items: center;
+}
+#arrow_1 .arrow {
+    cursor: pointer;
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+#arrow_1 .arrow span, #arrow_1 .arrow:before, #arrow_1 .arrow:after {
+    background: #fff;
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    position: absolute;
+    top: calc(50% - (2px / 2));
+}
+#arrow_1 .arrow:before {
+    transform: rotate(-45deg);
+}
+#arrow_1 .arrow:after {
+    transform: rotate(45deg);
+}
+#arrow_1 .arrow span {
+    width: 0;
+}
+#arrow_1 .arrow:hover span {
+    width: 30px;
+}
+#arrow_1 .arrow.arrow--left span, #arrow_1 .arrow.arrow--left:before, #arrow_1 .arrow.arrow--left:after {
+    left: 0;
+    transform-origin: left 50%;
+}
+#arrow_1 .arrow.arrow--left:before, #arrow_1 .arrow.arrow--left:after {
+    transition: left 0.3s 0.05s;
+}
+#arrow_1 .arrow.arrow--left span {
+    transition: width 0.3s, left 0.3s 0.05s;
+}
+#arrow_1 .arrow.arrow--left:hover span, #arrow_1 .arrow.arrow--left:hover:before, #arrow_1 .arrow.arrow--left:hover:after {
+    left: -21.216407355px;
+}
+
+
+#arrow_1 .arrow.arrow--left:active span, #arrow_1 .arrow.arrow--left:active:before, #arrow_1 .arrow.arrow--left:active:after {
+    background-color: #4A82EA;;
+}

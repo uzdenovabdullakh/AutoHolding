@@ -1,0 +1,70 @@
+.card {
+    width: 225px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column; /* Размещаем элементы в колонку */
+    border-radius: 4px;
+    transition: 0.2s;
+    position: relative;
+    background-color: white;
+  }
+
+.card:hover {
+    box-shadow: 4px 8px 16px rgba(255, 102, 51, 0.2);
+}
+
+.card__bottom {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto; /* Занимаем всю оставшуюся высоту карточки */
+    padding: 10px;
+}
+  
+.card__prices {
+    display: flex;
+    margin-bottom: 10px;
+    flex: 0 0 20%; /* Размещаем цены равномерно в две колонки */
+}
+  
+
+
+.card__title {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 150%;
+    color: #414141;
+    text-decoration: none;
+}
+  
+.card__title:hover {
+    color: #ff6633;
+}
+
+.card__category{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.card__requests{
+    background: #08E839;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.card__buttons{
+    padding: 5px;
+    padding-left: 17px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}

@@ -11,7 +11,7 @@ export default function GreetingPage(){
             navigate('/authorization', { state: {forLogin: true }})
         }
         else if (e.target.classList.contains("regist__btn")){
-            navigate('/authorization',{state: {forRegist: true}} )
+            navigate('/choose')
         }
     }
 

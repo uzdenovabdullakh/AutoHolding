@@ -1,0 +1,35 @@
+
+.nonSelectButton{
+    background: #19dcbd;
+    border-radius: 6px;
+    padding: 15px 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.SelectButton{
+    background: #0d855e;
+    border-radius: 6px;
+    padding: 15px 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    color: #FFFFFF;
+
+}
+
+
+.submit_btn_choosing{
+    padding: 10px 20px;
+    margin-top: 120px;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChangePass from "./ModalComponent/ChangePass";
 import { Link } from "react-router-dom";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import "../Styles/Avatar.css";
 import { useDispatch } from "react-redux";
@@ -72,13 +72,16 @@ export default function Avatar(props) {
     navigate('/')
   }
 
-
+  const handleNav = () =>{
+    sessionStorage.setItem('isDone', true)
+    navigate('/account')
+  }
 
   useEffect(() => {
     if(isClose) {
        setClicked(false)
     }
-});
+  });
 
   return (
     <div className="avatar__main">
@@ -86,7 +89,7 @@ export default function Avatar(props) {
         <div className="avatar"></div>
         <input className="checkbox" type="checkbox"></input>
         <div className="avatar__menu_items">
-            {isAccountPage ? null : <li><Link to="/account">Личный кабинет</Link></li>}
+            {isAccountPage ? null : <li onClick={handleNav}>Личный кабинет</li>}
             {isAccountPage ? <li onClick={handleClick}>Сменить пароль</li>: null}
             {isAccountPage ? <li onClick={handleDeleteUser}>Удалить аккаунт</li>: null}
           <li>

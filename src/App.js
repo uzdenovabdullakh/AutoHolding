@@ -11,6 +11,7 @@ import './firebase.js';
 import AccountPage from './pages/AccountPage';
 import PrivateRoute from './utils/privateRoutes/privateRoute';
 import NotFoundPage from './pages/NotFoundPage';
+import ChooseRole from './pages/ChoosingRole';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             </Route>
             <Route path="/" element={<GreetingPage></GreetingPage>}></Route>
             <Route path='/authorization' element={<RegistAuthPage></RegistAuthPage>}></Route>
+            <Route path="/choose" element={<ChooseRole></ChooseRole>}></Route>
             <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
           </Routes>
         </PersistGate>

@@ -1,5 +1,5 @@
 //import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { ABI, CONTRACT_ADDRESS } from './config';
 import Web3 from "web3";
 
@@ -26,8 +26,8 @@ export const useApi = ()=>{
     
 
     //getServiceStatus(uint _carIndex)
-    const printServiceStatus = async (carIndex) => {
-        const getServiceStatus = contract.methods.getServiceStatus(carIndex).call().then((result)=>{
+    const printServiceStatus = async (carIndex, address) => {
+        const getServiceStatus = contract.methods.getServiceStatus(carIndex).call({from: address}).then((result)=>{
             return result
         })
         const res = await getServiceStatus;
@@ -35,32 +35,53 @@ export const useApi = ()=>{
     };
     
 
-    //getServiceDealers()
-    const printServiceDealers = async () => {
-        const getServiceDealers = contract.methods.getServiceDealers().call().then((result)=>{
+    //getDealers()
+    const printDealers = async (name) => {
+        const getDealers = contract.methods.getDealers(name).call().then((result)=>{
             return result
         })
-        const res = await getServiceDealers;
+        const res = await getDealers;
         return res;
     };
-    
+
+    //getDealerByAddress
+    const printDealerByAddress = async (address) => {
+        const getDealerByAddress = contract.methods.getDealerByAddress(address).call().then((result)=>{
+            return result
+        })
+        const res = await getDealerByAddress;
+        return res;
+    };
+
+    //getCars()
+    const printCars = async (address) => {
+        const getCars = contract.methods.getCar().call({from: address}).then((result)=>{
+            return result
+        })
+        const res = await getCars;
+        return res;
+    };
 
     //addCar(string memory _brand, string memory _model, uint _year)
     const addCar = async (brand,model,year,address) => {
-        await contract.methods.addCar(brand,model,year).send({from: address}).then(console.log)
+        await contract.methods.addCar(brand,model,year).send({from: address, gas: 4712388})
     }
-    // const addCar = contract.methods.addCar().send({from: address}).then(console.log)
 
     //registerDealer(string memory _name, string memory _city)
     // const register = contract.methods.registerDealer().send({from: address}).then(console.log)
     const register = async (name, city, address) => {
-        await contract.methods.registerDealer(name, city).send({from: address}).then(console.log)
+        await contract.methods.registerDealer(name, city).send({from: address, gas: 4712388}).then(console.log)
     }
 
     //requestService(address _dealer, uint _carIndex)
     // const requestService = contract.methods.requestService().send({from: address}).then(console.log)
-    const requestService = async (dealer, carIndex, address) =>{
-        await contract.methods.requestService(dealer, carIndex).send({from: address}).then(console.log)
+    const requestService = async (dealer, carIndex, address, price) =>{
+        await contract.methods.requestService(dealer, carIndex, price).send({from: address, value: price}).then(console.log)
+    }
+
+    //cancelRequest
+    const cancelRequest = async (price,client,carIndex,address) =>{
+        await contract.methods.cancelRequest(price,client,carIndex).send({from: address, value: price}).then(console.log)
     }
 
     //создание аккаунта
@@ -69,10 +90,13 @@ export const useApi = ()=>{
     return {
         printBalance,
         printServiceStatus,
-        printServiceDealers,
+        printDealers,
+        printDealerByAddress,
+        printCars,
         addCar,
         register,
         requestService,
+        cancelRequest,
         createAccount,
     };
 }

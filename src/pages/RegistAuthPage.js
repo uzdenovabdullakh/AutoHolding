@@ -19,11 +19,12 @@ export default function RegistAuthPage(){
     const [repeatPassword, setRepeatPassword] = useState('');
     const [secondName, setSecondName] = useState('');
     const [name, setName] = useState('');
-    const [address, setAddress] = useState('')
+    const [address, setAddress] = useState('');
+    const [town, setTown] = useState('');
     const {register} = useApi()
 
     
-    const handleSubmit =  (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         if (location.state.forLogin){
             try{
@@ -39,9 +40,12 @@ export default function RegistAuthPage(){
                             token: user.accessToken,
                             ethAddress: data.ethAddress,
                             name: data.username,
+                            dealerName: data.dealerName,
+                            town: data.town,
                         }))
                     })
-                    navigate('/main')
+                    setTimeout(() => navigate('/main'), 3000);
+                    // navigate('/main')
                 })
             }catch(e){
                 console.log(e)
@@ -54,19 +58,39 @@ export default function RegistAuthPage(){
                     const db = getDatabase();
                     createUserWithEmailAndPassword(auth, email, password)
                         .then(({user})=>{
-                            dispatch(setUser({
-                                email: user.email,
-                                id: user.uid,
-                                token: user.accessToken,
-                                ethAddress: address,
-                                name: name + ' ' + secondName,
-                            }))
-                            set(ref(db, 'users/' +  user.uid), {
-                                username: name + ' ' + secondName,
-                                email: email,
-                                ethAddress: address,
-                            });
-                            //register(name, city, address)//регистрация в блокчейне эфира
+                            if (location.state.isClient){
+                                dispatch(setUser({
+                                    email: user.email,
+                                    id: user.uid,
+                                    token: user.accessToken,
+                                    ethAddress: address,
+                                    name: name + ' ' + secondName,
+                                }))
+                                set(ref(db, 'users/' +  user.uid), {
+                                    username: name + ' ' + secondName,
+                                    email: email,
+                                    ethAddress: address,
+                                });
+                            }
+                            if(location.state.isDealer){
+                                dispatch(setUser({
+                                    email: user.email,
+                                    id: user.uid,
+                                    token: user.accessToken,
+                                    ethAddress: address,
+                                    dealerName: name,
+                                    town: town,
+                                }))
+                                set(ref(db, 'users/' +  user.uid), {
+                                    dealerName: name,
+                                    town: town,
+                                    email: email,
+                                    ethAddress: address,
+                                });
+                                register(name, town, address)//регистрация в блокчейне эфира
+                               
+                            }
+                           
                             navigate('/main')
                     })
                 }
@@ -83,7 +107,10 @@ export default function RegistAuthPage(){
         <div className='modal'>
             <div className='modal-body'>
                 <form action="#" onSubmit={handleSubmit}>
-                    {location.state.forLogin?<Auth setEmail={setEmail} setPassword={setPassword} />:<Registration setSecondName={setSecondName} setName={setName} setEmail={setEmail}  setPassword={setPassword} setRepeatPassword={setRepeatPassword} setAddress={setAddress} />}   
+                    {location.state.forLogin?<Auth setEmail={setEmail} setPassword={setPassword} />:
+                    <Registration isClient={location.state.isClient} isDealer={location.state.isDealer} 
+                    setSecondName={setSecondName} setName={setName} setEmail={setEmail}  setPassword={setPassword} 
+                    setRepeatPassword={setRepeatPassword} setAddress={setAddress} setTown={setTown}/>}   
                 </form>
                 {/* <a>Не зарегистрированы? Зарегиристрироваться</a> */}
             </div>

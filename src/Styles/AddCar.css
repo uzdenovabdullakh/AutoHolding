@@ -49,6 +49,17 @@
     justify-content: space-around;
 }
 
+.date__input{
+    -moz-appearance: textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+
+.date__input::-webkit-outer-spin-button,
+.date__input::-webkit-inner-spin-button
+{
+    display: none;
+}
 
 .modal__body__car{
     padding: 1rem;

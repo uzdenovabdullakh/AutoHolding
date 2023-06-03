@@ -16,12 +16,11 @@
 
 .modal-body-autos {
     padding: 2rem;
-    width: 600px;
+    width: 800px;
     border-radius: 13px;
     background: #58A9A5;
-    height: 400px;
+    height: 550px;
     z-index: 3;
-
 }
 
 .modal-body-autos h1 {

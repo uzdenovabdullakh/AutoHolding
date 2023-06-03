@@ -19,6 +19,7 @@ function AddCar(props){
             const db = getDatabase();
             const carListRef = ref(db, 'cars');
             const newCarRef = push(carListRef);
+            if (brand!=='' || model!=='' || year!=='')
             set(newCarRef, {
                 client: select.id,
                 brand: brand,
@@ -51,21 +52,21 @@ function AddCar(props){
         <div className="modal__body__car">
             <h1>Добавление машины</h1>
             <div className="add__car__body">
-                <div className="main__block">
+                <form onSubmit={handleSubmit} className="main__block">
                     <div className="brand">
-                        <input className="add_car__inputs" required placeholder="Бренд" type="text" onChange={(e)=>setBrand(e.target.value)}></input>
+                        <input className="add_car__inputs" required placeholder="Бренд" minLength={3} type="text" onChange={(e)=>setBrand(e.target.value)}></input>
                     </div>
                     <div className="model">
                         <input className="add_car__inputs" required placeholder="Модель" type="text" onChange={(e)=>setModel(e.target.value)}></input>
                     </div>
                     <div className="year">
-                        <input className="add_car__inputs" required placeholder="Год" type="text" onChange={(e)=>setYear(e.target.value)}></input>
+                        <input className="add_car__inputs date__input" required placeholder="Год" max={2050} min={1900} type="number" onChange={(e)=>setYear(e.target.value)}></input>
                      </div>
                     <div className="add__car__buttons">
-                        <button className="adding_button" type="submit" onClick={handleSubmit}>Добавить</button>
+                        <button className="adding_button" type="submit">Добавить</button>
                         <button className="cancel_button" onClick={handleClose}>Отмена</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );

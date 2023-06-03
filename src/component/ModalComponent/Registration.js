@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react'
 import { useApi } from '../../utils/api/useApi';
 import PropTypes from "prop-types";
+import Error from '../Error.js';
 
 function Registration(props){
-    const {setSecondName,setName,setEmail,setPassword,setRepeatPassword, setAddress,setTown,isDealer, isClient} = props
+    const {setSecondName,setName,setEmail,setPassword,setRepeatPassword, setAddress,setTown,isDealer, isClient, error} = props
     const {createAccount} = useApi()
 
     const handleCheck = async (e) => {
@@ -36,11 +37,11 @@ function Registration(props){
                     <input className="inputs" type="text" required placeholder="Введите имя" onChange={(e)=>setName(e.target.value)}></input>
                     </Fragment> : null}
                   {isDealer ? <Fragment>
-                    <input className="inputs name__input" type="text" required placeholder="Введите название" onChange={(e)=>setName(e.target.value)}></input>
+                    <input className="inputs name__input" type="text" required placeholder="Введите название" minLength={3} onChange={(e)=>setName(e.target.value)}></input>
                     <input className="inputs" type="text" required placeholder="Город" onChange={(e)=>setTown(e.target.value)}></input>
                   </Fragment>: null}
                   <div className="eth__address">
-                    <input className="inputs address__input" type="text" placeholder="Ваш ETH-адрес" onChange={(e)=>setAddress(e.target.value)}></input>
+                    <input className="inputs address__input" type="text" required placeholder="Ваш ETH-адрес" onChange={(e)=>setAddress(e.target.value)}></input>
                     <input id="check" type="checkbox" className="check" onClick={handleCheck}/>
 					          <label htmlFor="check"><span className="icon"></span>Создать аккаунт в ETH</label>
                   </div>
@@ -48,6 +49,7 @@ function Registration(props){
                   <input className="inputs" type="password" required placeholder="Придумайте пароль" minLength="6" maxLength="20" onChange={(e)=>setPassword(e.target.value)}></input>
                   <input className="inputs" type="password" required placeholder="Повторите пароль" minLength="6" maxLength="20" onChange={(e)=>setRepeatPassword(e.target.value)}></input> 
                 </div>
+                {error?<Error error={error}></Error>:null}
                 <button className="submit_btn" type="submit">Зарегистрироваться</button>
               </div>
         </div>

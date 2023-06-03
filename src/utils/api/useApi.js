@@ -64,24 +64,26 @@ export const useApi = ()=>{
 
     //addCar(string memory _brand, string memory _model, uint _year)
     const addCar = async (brand,model,year,address) => {
-        await contract.methods.addCar(brand,model,year).send({from: address, gas: 4712388})
+        await contract.methods.addCar(brand,model,year).send({from: address, gas: 3000000})
     }
 
     //registerDealer(string memory _name, string memory _city)
     // const register = contract.methods.registerDealer().send({from: address}).then(console.log)
     const register = async (name, city, address) => {
-        await contract.methods.registerDealer(name, city).send({from: address, gas: 4712388}).then(console.log)
+        await contract.methods.registerDealer(name, city).send({from: address, gas: 3000000}).then(console.log)
     }
 
     //requestService(address _dealer, uint _carIndex)
     // const requestService = contract.methods.requestService().send({from: address}).then(console.log)
     const requestService = async (dealer, carIndex, address, price) =>{
-        await contract.methods.requestService(dealer, carIndex, price).send({from: address, value: price}).then(console.log)
+        let str = web3js.utils.toWei(price.toString(), "ether")
+        await contract.methods.requestService(dealer, carIndex, str).send({from: address, value: str}).then(console.log)
     }
 
     //cancelRequest
     const cancelRequest = async (price,client,carIndex,address) =>{
-        await contract.methods.cancelRequest(price,client,carIndex).send({from: address, value: price}).then(console.log)
+        let str = web3js.utils.toWei(price.toString(), "ether")
+        await contract.methods.cancelRequest(str,client,carIndex).send({from: address, value: str}).then(console.log)
     }
 
     //создание аккаунта

@@ -28,9 +28,11 @@ function DealerAccount(props){
                         let count=-1;
                         const cards = b.map((item)=>{
                             count=count+1;
-                            return (
-                                <Cards key={count} carIndex={item.carIndex} brand={item.brand} model={item.model} year={item.year} isCancel={item.isCancel} priceFor={item.price} clientId={item.clientId} clientAddress={item.clientAddress}></Cards>
-                            );
+                            //if (item.isCancel!==undefined){
+                                return (
+                                    <Cards key={count} carIndex={item.carIndex} brand={item.brand} model={item.model} year={item.year} isCancel={item.isCancel} priceFor={item.price} clientId={item.clientId} clientAddress={item.clientAddress}></Cards>
+                                );
+                            //}
                         })
                         setCardsArr([...cards])
                         sessionStorage.removeItem('isDone')

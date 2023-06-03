@@ -11,6 +11,9 @@ function ClientAccount(props){
     const [cardsArr, setCardsArr] = useState([])
     const dispatch = useDispatch();
     const select = useSelector(state=>state.user)
+    
+
+
     const handleClose = ()=>{
         setIsClickedAdd(false)
     }
@@ -33,11 +36,12 @@ function ClientAccount(props){
                             }
                         }
                         
+                        const forClientAcc=true;
                         let count=-1;
                         const cards = b.map((item)=>{
                             count=count+1;
                             return (
-                                <Cards key={count} carIndex={count} brand={item.brand} model={item.model} year={item.year}></Cards>
+                                <Cards key={count} carIndex={count} brand={item.brand} model={item.model} year={item.year} forClientAcc={forClientAcc}></Cards>
                             );
                         })
                         
@@ -54,11 +58,20 @@ function ClientAccount(props){
         }
         handleCards()
     })
-    
+
+    const header = {
+        fontFamily: 'Montserrat',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        marginLeft: '100px',
+        marginBottom: '0px',    
+    }
+
     return (
         <div> 
             <button className='add__car__btn' onClick={()=>setIsClickedAdd(true)}>Добавить машину</button>
             {isClickAdd ? <AddCar handleClose={handleClose}></AddCar> : null} 
+            <h1 style={header}>Гараж:</h1>
             <div className="ads__block">
                 <div className="cards">
                      {cardsArr}

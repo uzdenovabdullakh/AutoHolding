@@ -22,6 +22,7 @@ export default function RegistAuthPage(){
     const [address, setAddress] = useState('');
     const [town, setTown] = useState('');
     const {register} = useApi()
+    const [error, setError]=useState('')
 
     
     const handleSubmit = (e) => {
@@ -44,9 +45,22 @@ export default function RegistAuthPage(){
                             town: data.town,
                         }))
                     })
-                    setTimeout(() => navigate('/main'), 3000);
+                    setTimeout(() => navigate('/main'), 2000);
                     // navigate('/main')
-                })
+                }).catch(function(error) {
+                    // TODO: Notify user about error
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    console.log(errorCode)
+                    if (errorCode==='auth/user-not-found'){
+                        setError('Такого пользователя не существует')
+                        console.log('Такого пользователя не существует')
+                    }
+                    if (errorCode==='auth/wrong-password'){
+                        setError('Неверный пароль')
+                        console.log('Неверный пароль')
+                    }
+                    })
             }catch(e){
                 console.log(e)
             }
@@ -93,11 +107,25 @@ export default function RegistAuthPage(){
                            
                             navigate('/main')
                     })
+                    .catch(function(error) {
+                        // TODO: Notify user about error
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorCode)
+                        console.log(errorMessage)
+                        if (errorCode === 'auth/email-already-in-use') {
+                            setError('Пользователь с таким email уже существует')
+                            console.log('Пользователь с таким email уже существует')
+                            //перенаправить на вход
+                        }
+                        });
                 }
                 else {
+                    setError("Пароли должны совпадать")
                     throw new Error("Пароли должны совпадать")
                 }
             }catch(e){
+
                 console.log(e)
             }
         }
@@ -107,10 +135,10 @@ export default function RegistAuthPage(){
         <div className='modal'>
             <div className='modal-body'>
                 <form action="#" onSubmit={handleSubmit}>
-                    {location.state.forLogin?<Auth setEmail={setEmail} setPassword={setPassword} />:
+                    {location.state.forLogin?<Auth setEmail={setEmail} setPassword={setPassword} error={error} />:
                     <Registration isClient={location.state.isClient} isDealer={location.state.isDealer} 
                     setSecondName={setSecondName} setName={setName} setEmail={setEmail}  setPassword={setPassword} 
-                    setRepeatPassword={setRepeatPassword} setAddress={setAddress} setTown={setTown}/>}   
+                    setRepeatPassword={setRepeatPassword} setAddress={setAddress} setTown={setTown} error={error}/>}   
                 </form>
                 {/* <a>Не зарегистрированы? Зарегиристрироваться</a> */}
             </div>

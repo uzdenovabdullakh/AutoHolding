@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux'
 function MyAutos(props){
     const {setIsClose} = props
     const [cardsArr, setCardsArr] = useState([])
-    sessionStorage.setItem('forRequest', true)
     const select = useSelector(state=>state.user)
    
     
@@ -30,11 +29,12 @@ function MyAutos(props){
                             }
                         }
                         
+                        const forMyAutos = true;
                         let count=-1;
                         const cards = b.map((item)=>{
                             count=count+1;
                             return (
-                            <Cards key={count} carIndex={count} brand={item.brand} model={item.model} year={item.year} ></Cards>
+                            <Cards key={count} carIndex={count} brand={item.brand} model={item.model} year={item.year} forMyAutos={forMyAutos}></Cards>
                             );
                         })
                             

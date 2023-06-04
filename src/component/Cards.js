@@ -13,6 +13,7 @@ function Cards(props) {
     const [clientEmail, setClientName]=useState('')
     const select = useSelector(state=>state.user)
     const search = useSelector(state=>state.searchData)
+    const [cost, setCost]=useState(0)
 
 
     useEffect(()=>{
@@ -49,6 +50,7 @@ function Cards(props) {
             }
         }
         handleClientData()
+        getPrice()
         if (select.name){
             handleStatus()
         }
@@ -58,8 +60,7 @@ function Cards(props) {
     const handleRequest = async () =>{
         //отправка машины в сервис запись данных в базу и в блокчейн
         try {
-            const p = 0.035
-            await requestService(search.dealerAddress, carIndex, select.ethAddress, p)
+            await requestService(search.dealerAddress, carIndex, select.ethAddress, cost)
             const db = getDatabase();
             const carInServiceListRef = ref(db, 'carsInService'+`/${search.dealerAddress}`);
             const newcarInServiceListRef  = push(carInServiceListRef);
@@ -68,7 +69,7 @@ function Cards(props) {
                 carIndex: carIndex,
                 clientAddress:  select.ethAddress,
                 clientId: select.id,
-                price: p,
+                price: cost,
                 brand:brand,
                 model:model, 
                 year:year,
@@ -166,6 +167,23 @@ function Cards(props) {
         
     }
 
+    const getPrice = async () =>{
+        try{
+            const db = getDatabase();
+            const req = ref(db, `prices/${brand}/${model}/${year}`);
+            //brand, model, year
+            await onValue(req, (snapshot)=>{
+                let data = snapshot.val()
+                setCost(data['price'])
+                console.log(data['price'])
+            })
+        }
+        catch(e){
+            console.log(e)
+        }
+
+    }
+
     return(
         <Fragment>
             <div className="card">
@@ -188,7 +206,7 @@ function Cards(props) {
                         {forMyAutos ?
                         <div className="request__block">
                             <button className="card__requests" onClick={handleRequest}>Отправить в сервис</button>
-                            <span>Стоимость: 0.035 ETH</span>
+                            <span>Стоимость: {cost} ETH</span>
                         </div>
                         :null}
                         {forClientAcc && dealer ?

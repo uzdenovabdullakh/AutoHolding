@@ -5,7 +5,7 @@
     flex-direction: column; /* Размещаем элементы в колонку */
     border-radius: 4px;
     transition: 0.2s;
-    position: relative;
+    /* position: relative; */
     background-color: white;
   }
 

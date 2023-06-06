@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux'
 import "../Styles/Avatar.css";
 import { useDispatch } from "react-redux";
 import {removeUser} from '../utils/store/slices/userSlices'
-import { getAuth, updatePassword, deleteUser, reauthenticateWithCredential } from "firebase/auth";
+import { getAuth, updatePassword, deleteUser, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 
 export default function Avatar(props) {
   const {isAccountPage} = props
@@ -63,10 +63,19 @@ export default function Avatar(props) {
     // await api.delete(`http://localhost:5000/api/users/${sessionStorage.getItem('id')}`, )
     const auth = getAuth();
     const user = auth.currentUser;
+    const credential = EmailAuthProvider.credential(
+      auth.currentUser.email,
+      //userProvidedPassword
+    )
+    const result = await reauthenticateWithCredential(
+      auth.currentUser, 
+      credential
+    )
     await deleteUser(user).then(() => {
       console.log(user,'deleted')
     }).catch((error) => {
       console.log(error)
+      console.log(user)
     });
     dispatch(removeUser())
     navigate('/')

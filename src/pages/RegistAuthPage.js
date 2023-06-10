@@ -118,6 +118,9 @@ export default function RegistAuthPage(){
                             console.log('Пользователь с таким email уже существует')
                             //перенаправить на вход
                         }
+                        if (errorCode==='auth/invalid-email'){
+                            setError('Неккоректный email')
+                        }
                         });
                 }
                 else {

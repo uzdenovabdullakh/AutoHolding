@@ -175,7 +175,6 @@ function Cards(props) {
             await onValue(req, (snapshot)=>{
                 let data = snapshot.val()
                 setCost(data['price'])
-                console.log(data['price'])
             })
         }
         catch(e){

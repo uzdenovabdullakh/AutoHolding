@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = '0x457fDa92F78D9ff0c16aF0c2E6Fc99E84a26a12b';
+export const CONTRACT_ADDRESS = '0xB727fbe80e0073A2c51Baf1A727E243912B17b52';
 
 export const ABI = [
 	{
@@ -43,6 +43,52 @@ export const ABI = [
 			}
 		],
 		"name": "cancelRequest",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_city",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "registerDealer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_dealer",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_carIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "requestService",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -169,47 +215,6 @@ export const ABI = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_city",
-				"type": "string"
-			}
-		],
-		"name": "registerDealer",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_dealer",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_carIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_price",
-				"type": "uint256"
-			}
-		],
-		"name": "requestService",
-		"outputs": [],
-		"stateMutability": "payable",
 		"type": "function"
 	}
 ]

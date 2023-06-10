@@ -15,8 +15,8 @@ function Registration(props){
         el.classList.toggle('address__input__disabled')
         el.readOnly = true;
         
-        const a = await createAccount
-        setAddress(a.address)
+        const a = await createAccount()
+        setAddress(a)
       }
       else if(!chbox.checked) {
         el.disabled = false;

@@ -70,7 +70,13 @@ export const useApi = ()=>{
     //registerDealer(string memory _name, string memory _city)
     // const register = contract.methods.registerDealer().send({from: address}).then(console.log)
     const register = async (name, city, address) => {
-        await contract.methods.registerDealer(name, city).send({from: address, gas: 3000000}).then(console.log)
+        try{
+            await contract.methods.registerDealer(name, city, address).send({from:'0x3c9CA2254e6eA0528AA8a79De6a6fe79eEa6CCb6', gas: 3000000})
+        }
+        catch(e){
+            console.log(e)
+        }
+        
     }
 
     //requestService(address _dealer, uint _carIndex)
@@ -87,7 +93,13 @@ export const useApi = ()=>{
     }
 
     //создание аккаунта
-    const createAccount = web3js.eth.accounts.create()
+    //const createAccount = web3js.eth.accounts.create()
+
+    const createAccount = async () =>{
+        const address = await web3js.eth.accounts.create()
+        await web3js.eth.sendTransaction({to: address.address, from: '0x3c9CA2254e6eA0528AA8a79De6a6fe79eEa6CCb6', value: web3js.utils.toWei('0.06', 'ether')});
+        return address.address
+    }
 
     return {
         printBalance,

@@ -25,7 +25,7 @@ export default function MainPage(){
             const findDealer = data.filter((item)=>{
                 return item.city===town
             })
-            setDealerAddress(findDealer[0].dealerAddress)
+            setDealerAddress(findDealer[0].dealerAddress)  
             setIsFind(true)
         }catch(e){
             console.log(e)

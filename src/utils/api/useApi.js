@@ -12,6 +12,14 @@ export const useApi = ()=>{
     let contract = new web3js.eth.Contract(ABI, addressContract);
     // const address = useSelector(state=>state.user.ethAddress)
 
+    const getAccount = async () =>{
+        const acc = web3js.eth.getAccounts().then((result)=>{
+            return result
+        });
+        const b = await acc;
+        return b[0]
+    }
+    
 
     //баланс
     const printBalance = async (address) => {
@@ -71,7 +79,8 @@ export const useApi = ()=>{
     // const register = contract.methods.registerDealer().send({from: address}).then(console.log)
     const register = async (name, city, address) => {
         try{
-            await contract.methods.registerDealer(name, city, address).send({from:'0x3c9CA2254e6eA0528AA8a79De6a6fe79eEa6CCb6', gas: 3000000})
+            const acc = await getAccount()
+            await contract.methods.registerDealer(name, city, address).send({from: acc, gas: 3000000})
         }
         catch(e){
             console.log(e)
@@ -97,10 +106,11 @@ export const useApi = ()=>{
 
     const createAccount = async () =>{
         const address = await web3js.eth.accounts.create()
-        await web3js.eth.sendTransaction({to: address.address, from: '0x3c9CA2254e6eA0528AA8a79De6a6fe79eEa6CCb6', value: web3js.utils.toWei('0.06', 'ether')});
+        const acc = await getAccount()
+        await web3js.eth.sendTransaction({to: address.address, from: acc, value: web3js.utils.toWei('0.06', 'ether')});
         return address.address
     }
-
+    //в функциях register и createAccount чтобы эфир не тратился в from указывается другой первый аккаунт
     return {
         printBalance,
         printServiceStatus,
